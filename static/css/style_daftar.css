@@ -1,0 +1,18 @@
+.btn-custom {
+    border-radius: 25px;
+}
+
+.blue-text {
+    color: #bae8e8;
+    font-size: 40px;
+}
+
+.rounded {
+    border-radius: 25px !important;
+}
+
+body {
+    background-image: url("../asset/background.png");
+    background-size: cover;
+    background-position: center;
+}

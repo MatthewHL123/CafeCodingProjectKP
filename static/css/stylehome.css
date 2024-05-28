@@ -1,0 +1,76 @@
+/* Navbar styling */
+.navbar {
+  background-color: #77229a;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand img {
+  width: 40px; /* Tentukan lebar eksplisit untuk memperbesar logo */
+  height: auto;
+  margin-right: 10px; /* Sesuaikan jarak antara logo dan tulisan */
+}
+
+.navbar-nav .nav-link {
+  color: #fff !important;
+}
+
+.navbar-nav .nav-item {
+  margin-right: 25px;
+  font-weight: bold;
+}
+
+.navbar-brand:nth-of-type(2) {
+  color: #fff;
+}
+
+.navbar-actions {
+  display: flex;
+  max-width: 90%;
+  justify-content: space-between;
+  margin-right: 20px;
+}
+
+/* Button styling */
+.btn a {
+  text-decoration: none;
+  color: #000; /* Ubah warna teks menjadi hitam */
+}
+
+.btn.btn-outline-light {
+  background-color: white;
+  border-color: #000;
+  border-radius: 0%;
+}
+
+.btn.btn-outline-light a {
+  color: #000; /* Warna teks hitam untuk tombol outline light */
+}
+
+.btn:hover a {
+  color: #77229a; /* Ubah warna teks menjadi #77229A saat kursor didekati */
+}
+
+/* About section styling */
+#about {
+  background: linear-gradient(to bottom, #77229a 0%, #fafafa 100%);
+  padding-top: 10rem;
+  text-align: center;
+  min-height: 100vh;
+}
+
+#img img {
+  max-width: 100%;
+  height: auto;
+  margin-left: auto; /* Ubah nilai ini sesuai dengan kebutuhan jarak ke kanan */
+  margin-right: 20px;
+  display: block;
+  max-height: 400px;
+}
+
+#text-about {
+  margin-top: 10%;
+}

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe Coding</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        .btn-custom {
+            border-radius: 25px;
+        }
+
+        .blue-text {
+            color: #bae8e8;
+            font-size: 40px;
+        }
+
+        .rounded {
+            border-radius: 25px !important;
+        }
+
+        body {
+            background-color: #f8f8ff;
+        }
+    </style>
+
+
+
+    <script>
+
+        function sign_up() {
+            let username = $("#input_username").val();
+            let email = $("#input_email").val();
+            let password = $("#input_password").val();
+
+            if (username === "") {
+                handleValidationError("#input_username", "#help_username", "Tolong Masukkan Username Anda");
+                return;
+            } else {
+                $("#input_username").removeClass("is-invalid");
+            }
+
+            if (email === "" || !validateEmail(email)) {
+                handleValidationError("#input_email", "#help_email", "Tolong Masukkan Email Anda dengan Benar");
+                return;
+            } else {
+                $("#input_email").removeClass("is-invalid");
+            }
+
+            if (password === "") {
+                handleValidationError("#input_password", "#help_pw", "Tolong Masukkan Password Anda");
+                return;
+            } else {
+                $("#input_password").removeClass("is-invalid");
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "/user_signup",
+                data: {
+                    username: username,
+                    email: email,
+                    password: password,
+                },
+                success: function (response) {
+                    if (response.result === "success") {
+                        alert("Pendaftaran Member Sukses!");
+                        window.location.href = "/login";
+                    } else {
+                        handleValidationError("#input_username", "#help_username", "Username sudah terdaftar");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX request error:", status, error);
+                    alert("Terjadi kesalahan saat melakukan pendaftaran. Silakan coba lagi.");
+                },
+            });
+        }
+
+        function handleValidationError(inputSelector, helpSelector, message) {
+            $(inputSelector).addClass("is-invalid");
+            $(helpSelector).text(message);
+            $(inputSelector).focus();
+        }
+
+        function validateEmail(email) {
+            var re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            return re.test(String(email).toLowerCase());
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-between align-items-center vh-100">
+            <div class="col-md-4 ml-4">
+                <div>
+                    <h1 class="blue-text">
+                        <img src="static/asset/Frame 5.jpg" alt="Logo" class="logo-image">
+                    </h1>
+                    <p class="font-weight-bold">Belajar lebih mudah dan seru</p>
+                    <p>Dan jadikan nongkrong mu lebih bermanfaat</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <form class="bg-white p-4 rounded">
+                    <h1 class="text-center mb-4">Cafe Coding</h1>
+
+                    <div class="form-group">
+                        <label for="input_username">Username</label>
+                        <input id="input_username" type="text" class="form-control rounded"
+                            aria-describedby="help_username" placeholder="Enter username">
+                        <div id="help_username" class="invalid-feedback">
+                            Tolong Masukkan Username Anda
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="input_email">Email address</label>
+                        <input id="input_email" type="email" class="form-control rounded" aria-describedby="help_email"
+                            placeholder="Enter email" pattern="pattern="
+                            [a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+                        <div id="help_email" class="invalid-feedback">
+                            Tolong Masukkan Email Anda dengan Benar
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <label for="input_password">Password</label>
+                        <input id="input_password" type="password" class="form-control rounded"
+                            aria-describedby="help_pw" placeholder="Enter password">
+                        <div id="help_pw" class="invalid-feedback">
+                            Tolong Masukkan Password Anda
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary btn-custom btn-block rounded"
+                            onclick="sign_up()">Sign Up</button>
+                    </div>
+
+                    <div class="text-center">
+                        Sudah punya akun? <a href="/login">Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

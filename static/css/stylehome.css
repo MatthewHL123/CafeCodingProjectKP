@@ -68,9 +68,15 @@
   margin-left: auto; /* Ubah nilai ini sesuai dengan kebutuhan jarak ke kanan */
   margin-right: 20px;
   display: block;
-  max-height: 400px;
+  max-height: 700px;
 }
 
 #text-about {
   margin-top: 10%;
+}
+
+ .col-md-6 img{
+  width: 400px;
+  height: 600px;
+ 
 }

@@ -8,16 +8,16 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="../static/css/style_login.css">
 
-   <script>
-
+  <script>
     function is_username(asValue) {
       var regExp = /^(?=.*[a-zA-Z])[-a-zA-Z0-9_.]{2,20}$/;
       return regExp.test(asValue);
     }
+
     function sign_up() {
       let username = $("#input_username").val();
       let email = $("#input_email").val();
-      let password = $("#input-password").val(); // Changed the ID
+      let password = $("#input-password").val();
 
       if (username === "") {
         handleValidationError("#input_username", "#help_username1", "Tolong Masukkan Username Anda");
@@ -111,6 +111,15 @@
       $(inputSelector).focus();
     }
 
+    function togglePassword() {
+      const passwordField = document.getElementById("input-password");
+      const passwordFieldType = passwordField.getAttribute("type");
+      if (passwordFieldType === "password") {
+        passwordField.setAttribute("type", "text");
+      } else {
+        passwordField.setAttribute("type", "password");
+      }
+    }
 
     $(document).ready(function () {
       toggleForm();
@@ -131,12 +140,12 @@
           <p>Dan jadikan nongkrong mu lebih bermanfaat</p>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6" id="img">
         <form class="bg-white p-4 rounded">
-          <h1> <img src="../static/asset/logo cc.png" style="position: relative; left: 50px; top: 60px; width: 50px; height: auto;">
-
-           <p class="text-center mb-4">Cafe Coding</p> </h1> 
-          <div id="boxnama" class=" d-none">
+          <h1> <img src="../static/asset/logo cc.png">
+            <p class="text-center mb-4">Cafe Coding</p>
+          </h1>
+          <div id="boxnama" class="d-none">
             <div class="form-group">
               <label for="exampleInputEmail1">Name</label>
               <input id="input_username" type="text" class="form-control rounded" aria-describedby="name"
@@ -162,6 +171,7 @@
             <div>
               <label for="exampleInputPassword1">Password</label>
               <input type="password" class="form-control rounded" id="input-password" placeholder="Password">
+              <input type="checkbox" id="toggle-password" onclick="togglePassword()"> Show Password
             </div>
             <div id="help_pw1" class="invalid-feedback">
               Tolong masukkan password anda
@@ -169,8 +179,7 @@
           </div>
 
           <div id="login-btn">
-            <button type="button" class="btn btn-primary btn-custom btn-block rounded"
-              onclick="sign_in()">Login</button>
+            <button type="button" class="btn btn-primary btn-custom btn-block rounded" onclick="sign_in()">Login</button>
           </div>
 
           <div id="btn-action" class="text-center">
@@ -182,7 +191,7 @@
     </div>
   </div>
 
-  <script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
